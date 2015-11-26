@@ -12,7 +12,11 @@
     <script src="lib/angular/angular-messages.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/listaTelefonicaCtrl.js"></script>
+    <script src="js/value/configValue.js"></script>
     <script src="js/services/contatosAPIService.js"></script>
+    <script src="js/services/operadorasAPIService.js"></script>
+    <script src="js/config/serialGeneratorConfig.js"></script>
+    <script src="js/services/serialGeneratorService.js"></script>
     
 </head>
 <body ng-controller="listaTelefonicaCtrl">
@@ -26,6 +30,7 @@
        <table ng-show="contatos.length > 0" class="table table-striped">
            <tr>
                <th></th>
+               <th>Serial</th>
                <th><a href="" ng-click="ordenarPor('nome')"> Nome </a></th>
                <th><a href="" ng-click="ordenarPor('telefone')">Telefone </a></th>
                <th>Operadora</th>
@@ -33,12 +38,13 @@
                <th></th>
            </tr>
            <tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoOrdenacao">
-               <th><input type="checkbox" ng-model="contato.selecionado" /></th>
-               <th>{{contato.nome | uppercase}}</th>
-               <th>{{contato.telefone}}</th>
-               <th>{{contato.operadora.nome | lowercase}}</th>
-               <th>{{contato.data | date:'dd/MM/yyyy HH:mm'}}</th>
-               <th style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></th>
+               <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+               <td>{{contato.serial}}</td>
+               <td>{{contato.nome | uppercase}}</td>
+               <td>{{contato.telefone}}</td>
+               <td>{{contato.operadora.nome | lowercase}}</td>
+               <td>{{contato.data | date:'dd/MM/yyyy HH:mm'}}</td>
+               <td style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></td>
            </tr>
        </table>
        <hr />
